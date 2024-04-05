@@ -1,1 +1,73 @@
+To efficiently perform the circular shift operation on a sorted array, we can utilize the concept of reversing portions of the array. The steps involved in the algorithm are as follows:
 
+1. Calculate the effective shift amount by taking the modulo of `k` with the length of the array (`n`), as shifting by `n` positions results in the same array.
+2. Reverse the entire array.
+3. Reverse the first `k` elements.
+4. Reverse the remaining `n - k` elements.
+
+Here's the implementation of this algorithm in C, along with the recurrence relation and time complexity analysis:
+
+```c
+#include <stdio.h>
+
+// Function to reverse elements of an array from start to end indices
+void reverse(int arr[], int start, int end) {
+    while (start < end) {
+        int temp = arr[start];
+        arr[start] = arr[end];
+        arr[end] = temp;
+        start++;
+        end--;
+    }
+}
+
+// Function to perform circular shift on a sorted array
+void circularShift(int arr[], int n, int k) {
+    // Calculate effective shift amount
+    k = k % n;
+
+    // Reverse the entire array
+    reverse(arr, 0, n - 1);
+    // Reverse the first k elements
+    reverse(arr, 0, k - 1);
+    // Reverse the remaining n-k elements
+    reverse(arr, k, n - 1);
+}
+
+int main() {
+    int arr[] = {5, 15, 29, 35, 42};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int k = 2;
+
+    printf("Original Array: ");
+    for (int i = 0; i < n; i++)
+        printf("%d ", arr[i]);
+    printf("\n");
+
+    circularShift(arr, n, k);
+
+    printf("Circularly Shifted Array: ");
+    for (int i = 0; i < n; i++)
+        printf("%d ", arr[i]);
+    printf("\n");
+
+    return 0;
+}
+```
+
+Recurrence Relation:
+Let T(n) be the time taken to circularly shift an array of size n. The recurrence relation can be expressed as:
+\[ T(n) = O(n) + T(n/2) \]
+
+Time Complexity Analysis:
+Using the iterative method to solve the recurrence relation, we have:
+\[ T(n) = O(n) + T(n/2) \]
+\[ = O(n) + O(n/2) + T(n/4) \]
+\[ = O(n) + O(n/2) + O(n/4) + T(n/8) \]
+\[ \vdots \]
+\[ = O(n + n/2 + n/4 + \ldots + 1) \]
+
+Using the formula for the sum of a geometric series, this simplifies to:
+\[ O(n) \]
+
+Hence, the time complexity of the algorithm is  O(n) 
