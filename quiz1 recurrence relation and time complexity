@@ -1,3 +1,9 @@
+
+gatdor kuol gai
+SCT221-0225/2019
+design and analysis cat
+
+
 To write a recurrence relation for the given algorithm, we consider the operation involved in each recursive call:
 
 1.Allocation of memory for the extracted sentence: This operation occurs only once per call.
