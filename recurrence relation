@@ -1,0 +1,37 @@
+To write a recurrence relation for the given algorithm, we consider the operation involved in each recursive call:
+
+1.Allocation of memory for the extracted sentence: This operation occurs only once per call.
+Copying characters from the original sentence to the extracted sentence: This operation iterates over each character from the start index to the end index.
+We denote: (n) as the difference between the start and end indices (end - start)
+
+ the recurrence relation:
+
+T(n) = T(n-1) + O(1)
+
+Explanation:
+
+T(n) represents the time complexity of extracting a sentence with a difference of n characters between the start and end indices.
+The first term, T(n-1), represents the time taken to extract a sentence with (n-1) characters difference. This term accounts for the time taken for memory allocation.
+The second term, O(1), accounts for the constant time taken for copying characters from the original sentence to the extracted sentence.
+The base case of the recursion occurs when n = 0, i.e., when the start and end indices are the same.
+
+Now, let's find the time complexity using the tracing tree method:
+
+
+                      T(n)
+                    /     \
+               T(n-1)      O(1)
+             /     \
+        T(n-2)    O(1)
+         /   \
+       T(n-3) O(1)
+        / \
+     ...   O(1)
+       \
+      T(0) (base case)
+
+In the tracing tree, each level represents a recursive call with a reduction of one character difference between the start and end indices. The algorithm stops when the difference becomes zero (base case). At each level, there is also a constant time operation of copying characters.
+
+From the tracing tree, we can observe that there are n levels in total.
+
+Therefore, the time complexity of the algorithm is O(n), where n is the difference between the start and end indices.
